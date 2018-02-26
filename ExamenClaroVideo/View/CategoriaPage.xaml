@@ -19,66 +19,62 @@
 
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="20*"/>
-        </Grid.RowDefinitions>
 
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <AutoSuggestBox PlaceholderText="Buscar"
-                            Grid.Column="2"
-                            VerticalAlignment="Center"
-                            QueryIcon="Find"
-                            Margin="10"/>
-
-            <Image Margin="10 0 0 0" HorizontalAlignment="Left" Height="100" Width="320" Stretch="Uniform"  Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="0 0 0 15" MaxHeight="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                    
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1"  Background="Transparent" BorderBrush="White" BorderThickness="0 0 0 2 "></Border>
+                <TextBlock Text="Ciencia Ficción" Grid.Column="1" Margin="5" FontSize="25" Foreground="White" FontWeight="Bold" />
+            </Grid>            
+            <GridView Grid.Row="2"
+                        x:Name="listView" 
+                        ItemsSource="{Binding ListaPeliculas}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        IsItemClickEnabled="True"
+                        IsSwipeEnabled="False"
+                        CanDragItems="False"
+                        SelectedItem="{Binding ElementoMenu , Mode=TwoWay}"
+                        animations:Connected.ListItemElementName="ItemThumbnail"                    
+                        animations:Connected.ListItemKey="listItem"  
+                        animations:ReorderGridAnimation.Duration="257"
+                        SelectionMode="Single">
+                <GridView.ItemTemplate >
+                    <DataTemplate x:Name="ImageOverlayDataTemplate1" x:DataType="local:PeliculaDetalleType">
+                        <Grid x:Name="ElemntoPelicula" Height="180" Width="320" Margin="5"  AutomationProperties.Name="{x:Bind Titulo}">
+                            <controls:ImageEx Name="RoundImageExControl"
+                                        IsCacheEnabled="True" 
+                                        Height="180" Width="320"
+                                        DecodePixelWidth="320" DecodePixelHeight="180"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Stretch="Fill"
+                                        animations:Connected.Key="Imagen"  
+                                        Source="{x:Bind UrlImagen}"  />
+                            <!--<Image Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>-->
+                            <StackPanel Orientation="Vertical" Height="50" VerticalAlignment="Bottom" Background="{ThemeResource SystemBaseLowColor}" Padding="8">
+                                <TextBlock Text="{x:Bind Titulo}"/>
+                                <TextBlock  Text="{x:Bind Duracion}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="4"  Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
         </Grid>
-        <GridView Grid.Row="2"
-                    x:Name="listView" 
-                    ItemsSource="{Binding ListaPeliculas}"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Center"
-                    IsItemClickEnabled="True"
-                    IsSwipeEnabled="False"
-                    CanDragItems="False"
-                    SelectedItem="{Binding ElementoMenu , Mode=TwoWay}"
-                    animations:Connected.ListItemElementName="ItemThumbnail"                    
-                    animations:Connected.ListItemKey="listItem"  
-                    animations:ReorderGridAnimation.Duration="257"
-                    SelectionMode="Single">
-            <GridView.ItemTemplate >
-                <DataTemplate x:Name="ImageOverlayDataTemplate1" x:DataType="local:PeliculaDetalleType">
-                    <Grid x:Name="ElemntoPelicula" Height="180" Width="320" Margin="5"  AutomationProperties.Name="{x:Bind Titulo}">
-                        <controls:RoundImageEx Name="RoundImageExControl"
-                                    IsCacheEnabled="True" 
-                                    Height="180" Width="320"
-                                    DecodePixelWidth="320" DecodePixelHeight="180"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    PlaceholderStretch="None"
-                                    Stretch="Fill"
-                                    animations:Connected.Key="Imagen"                                               
-                                    PlaceholderSource="ms-appx:///Assets\clarovideo-logo-sitio-70-71.png"
-                                    Source="{x:Bind UrlImagen}"  />
-                        <!--<Image Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>-->
-                        <StackPanel Orientation="Vertical" Height="50" VerticalAlignment="Bottom" Background="{ThemeResource SystemBaseLowColor}" Padding="8">
-                            <TextBlock Text="{x:Bind Titulo}"/>
-                            <TextBlock  Text="{x:Bind Duracion}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid MaximumRowsOrColumns="4"  Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
     </Grid>
 
 </Page>

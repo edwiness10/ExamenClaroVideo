@@ -26,6 +26,12 @@ namespace ExamenClaroVideo.ViewModel
         private object _frameAplicacion;
         private ObservableCollection<SplitViewPaneMenuItem> _menuItems;
         private SplitViewPaneMenuItem _selectMenu;
+        
+        private ICommand _textChangedCommand;
+        private ICommand _querySubmittedCommand;
+
+        private string _textoBuscador;
+        private ObservableCollection<PeliculaDetalleType> _listaResultado;
 
 
         #endregion
@@ -112,6 +118,53 @@ namespace ExamenClaroVideo.ViewModel
                 }
             }
         }
+        public ICommand TextChangedCommand
+        {
+            get
+            {
+                if (_textChangedCommand == null)
+                {
+                    _textChangedCommand = new RelayCommand<object>(TextChanged);
+                }
+                return _textChangedCommand;
+            }
+        }
+        public ICommand QuerySubmittedCommand
+        {
+            get
+            {
+                if (_querySubmittedCommand == null)
+                {
+                    _querySubmittedCommand = new RelayCommand<PeliculaDetalleType>(TextChanged);
+                }
+                return _querySubmittedCommand;
+            }
+        }
+        public string TextoBuscador
+        {
+            get { return _textoBuscador; }
+            set
+            {
+                if (value != _textoBuscador)
+                {
+                    _textoBuscador = value;
+                    RaisePropertyChanged(() => TextoBuscador);
+                }
+
+            }
+        }
+        public ObservableCollection<PeliculaDetalleType> ListaResultado
+        {
+            get { return _listaResultado; }
+            set
+            {
+                if (value != _listaResultado)
+                {
+                    _listaResultado = value;
+                    RaisePropertyChanged(() => ListaResultado);
+                }
+            }
+        }
 
         #endregion
 
@@ -152,6 +205,11 @@ namespace ExamenClaroVideo.ViewModel
                 SelectMenu = null;
             }
             
+        }
+
+        private void TextChanged(object data)
+        {
+
         }
         #endregion
 

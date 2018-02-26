@@ -24,6 +24,8 @@ namespace ExamenClaroVideo.ViewModel
         private IBussinesLayer bussinesLayer;
         private PeliculaDetalleType _elementoMenu;
         private ICommand _pageLoadedCommand;
+
+
         public ObservableCollection<PeliculaDetalleType> ListaPeliculas
         {
             get { return _listaPeliculas; }
@@ -61,7 +63,6 @@ namespace ExamenClaroVideo.ViewModel
                 return _pageLoadedCommand;
             }
         }
-
         public CategoriaViewModel(ServiceNavigation serviceNavigation, IBussinesLayer bussinesLayer)
         {
             this._serviceNavigation = serviceNavigation;
@@ -81,8 +82,13 @@ namespace ExamenClaroVideo.ViewModel
             if (ListaPeliculas==null)
             {
                 ListaPeliculas = await bussinesLayer.DameListaPelis();
+                if (ListaPeliculas.Count()==0)
+                {
+                    ListaPeliculas = null;
+                }
             }
             
         }
+        
     }
 }

@@ -6,7 +6,9 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:c="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <i:Interaction.Behaviors>
@@ -58,7 +60,54 @@
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:Name="Principal">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <AutoSuggestBox PlaceholderText="Buscar"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            QueryIcon="Find"                            
+                            Text="{Binding TextoBuscador, Mode=TwoWay}"
+                            QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                            SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                             ItemsSource="{Binding ListaPeliculas}"
+                            Margin="10">
+                            <AutoSuggestBox.ItemTemplate >
+                                <DataTemplate  x:DataType="local:PeliculaDetalleType">
+                                    <Grid x:Name="ElemntoPelicula" Height="180" Width="320" Margin="5"  AutomationProperties.Name="{x:Bind Titulo}">
+                                        <controls:ImageEx Name="RoundImageExControl"
+                                        IsCacheEnabled="True" 
+                                        Height="180" Width="320"
+                                        DecodePixelWidth="320" DecodePixelHeight="180"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Stretch="Fill" 
+                                        Source="{x:Bind UrlImagen}"  />
+                                        <StackPanel Orientation="Vertical" Height="50" VerticalAlignment="Bottom" Background="{ThemeResource SystemBaseLowColor}" Padding="8">
+                                            <TextBlock Text="{x:Bind Titulo}"/>
+                                            <TextBlock  Text="{x:Bind Duracion}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </AutoSuggestBox.ItemTemplate>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="TextChanged">
+                                    <c:InvokeCommandAction Command="{Binding TextChangedCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </AutoSuggestBox>
+
+                        <Image Margin="10 0 0 0" VerticalAlignment="Center"  HorizontalAlignment="Left" Height="100" Width="320" Stretch="Uniform"  Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>
+                        
+                    </Grid>
+                    <Frame Grid.Row="1" x:Name="Principal">
                         <Frame.ContentTransitions>
                             <TransitionCollection>
                                 <NavigationThemeTransition>
@@ -69,6 +118,7 @@
                             </TransitionCollection>
                         </Frame.ContentTransitions>
                    </Frame>
+                </Grid>
             </SplitView.Content>
         </SplitView>
 

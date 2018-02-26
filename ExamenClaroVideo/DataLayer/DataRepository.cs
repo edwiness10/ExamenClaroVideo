@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,10 +34,8 @@ namespace ExamenClaroVideo.DataLayer
             }
             catch (Exception ex)
             {
-                
-            }
-           
-           
+                Debug.WriteLine(ex);
+            }    
         }
 
     }

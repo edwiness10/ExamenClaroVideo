@@ -4,6 +4,7 @@ using ExamenClaroVideo.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -69,7 +70,7 @@ namespace ExamenClaroVideo.Model
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex);
             }
         }
 
@@ -78,7 +79,10 @@ namespace ExamenClaroVideo.Model
             //Download("");
             StartDownload_Click();
             var datosRetorno = await webService.ObtenerListaPeliculas();
-            dataRepository.GuardarListaPeliculas(datosRetorno);
+            Task.Factory.StartNew(() =>
+            {
+                dataRepository.GuardarListaPeliculas(datosRetorno);
+            });
             return ConverterData.ConverteCollectionPeliculasToType(datosRetorno);
         }
 

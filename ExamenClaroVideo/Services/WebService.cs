@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -52,6 +53,7 @@ namespace ExamenClaroVideo.Services
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return new ObservableCollection<Db_Peliculas>();
             }
         }
@@ -81,6 +83,7 @@ namespace ExamenClaroVideo.Services
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return new Db_Peliculas();
             }
         }
@@ -96,8 +99,9 @@ namespace ExamenClaroVideo.Services
                 }
                 return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return false;
             }
         }
