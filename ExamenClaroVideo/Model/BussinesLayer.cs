@@ -1,4 +1,5 @@
 ﻿using ExamenClaroVideo.DataLayer;
+using ExamenClaroVideo.DataLayer.Entities;
 using ExamenClaroVideo.DataTypes;
 using ExamenClaroVideo.Services;
 using System;
@@ -19,29 +20,42 @@ namespace ExamenClaroVideo.Model
     {
         private IDataRepository dataRepository;
         private IWebService webService;
-
         private PeliculaDetalleType _peliculaActual;
+
+        private bool _hayInternet;
+        public event EventHandler<bool> EventoCambioEstadoInternet;
 
         public BussinesLayer(IDataRepository dataRepository, IWebService webService)
         {
             this.dataRepository = dataRepository;
             this.webService = webService;
-            webService.ObtenerListaPeliculas();
-            webService.ObtenerPelicula(2);
-            
+            MonitorearInternet();
         }
         public bool HayInternet()
         {
             var x = NetworkInformation.GetInternetConnectionProfile();
             if (x != null)
             {
+                _hayInternet = true;
                 return true;
             }
             else
             {
+                _hayInternet = false;
                 return false;
-            }
+            }           
         }
+        public void MonitorearInternet()
+        {
+            NetworkInformation.NetworkStatusChanged += NetworkInformation_NetworkStatusChanged;
+            HayInternet();
+        }
+
+        private void NetworkInformation_NetworkStatusChanged(object sender)
+        {
+            EventoCambioEstadoInternet?.Invoke(this, HayInternet());
+        }
+
         private async void StartDownload_Click()
         {
             try
@@ -76,14 +90,45 @@ namespace ExamenClaroVideo.Model
 
         public async Task <ObservableCollection<PeliculaDetalleType>> DameListaPelis()
         {
-            //Download("");
-            StartDownload_Click();
-            var datosRetorno = await webService.ObtenerListaPeliculas();
-            Task.Factory.StartNew(() =>
+            ////Download("");
+            //StartDownload_Click();
+            ObservableCollection<Db_Peliculas> datosRetorno= new ObservableCollection<Db_Peliculas>();
+            if (HayInternet())
             {
-                dataRepository.GuardarListaPeliculas(datosRetorno);
-            });
+                 datosRetorno = await webService.ObtenerListaPeliculas();
+                if (datosRetorno != null)
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        dataRepository.GuardarListaPeliculas(datosRetorno);
+                    });
+                }
+            }
+            else
+            {
+                datosRetorno = dataRepository.DameListaPeliculas();
+            }
             return ConverterData.ConverteCollectionPeliculasToType(datosRetorno);
+        }
+
+        public async Task<ObservableCollection<PeliculaDetalleType>> BuscarPelicula(string peliculaBuscar)
+        {
+            ObservableCollection < Db_Peliculas > datosRetorno = new ObservableCollection<Db_Peliculas> ();
+            if (_hayInternet)
+            {
+                 datosRetorno = await webService.ObtenerListaPeliculas();
+            }
+            else
+            {
+                datosRetorno =  dataRepository.DameListaPeliculas();
+            }
+           
+            ObservableCollection<Db_Peliculas> nuevo = new ObservableCollection<Db_Peliculas>();
+            if (datosRetorno!=null)
+            {
+                nuevo = new ObservableCollection<Db_Peliculas> (datosRetorno.Where(x=>x.Titulo.ToUpper().Contains(peliculaBuscar.ToUpper())));
+            }
+            return ConverterData.ConverteCollectionPeliculasToType(nuevo);
         }
 
         public void PeliculaActualSet(PeliculaDetalleType peliculaActual)

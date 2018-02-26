@@ -11,5 +11,6 @@ namespace ExamenClaroVideo.DataLayer
     public interface IDataRepository
     {
         void GuardarListaPeliculas(ObservableCollection<Db_Peliculas> observableCollection);
+        ObservableCollection<Db_Peliculas> DameListaPeliculas();
     }
 }

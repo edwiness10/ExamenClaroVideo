@@ -37,6 +37,24 @@ namespace ExamenClaroVideo.DataLayer
                 Debug.WriteLine(ex);
             }    
         }
+        public ObservableCollection<Db_Peliculas>  DameListaPeliculas()
+        {
+            try
+            {
+                ObservableCollection<Db_Peliculas> datosGuardados = new ObservableCollection<Db_Peliculas>();
+                using (var db = new DatosContext())
+                {
+                     datosGuardados = new ObservableCollection<Db_Peliculas>(db.Peliculas);
+                }
+                return datosGuardados;
+            }
+            catch (Exception ex)
+            {                
+                Debug.WriteLine(ex);
+                return new ObservableCollection<Db_Peliculas>();
+            }
+        }
+
 
     }
 }

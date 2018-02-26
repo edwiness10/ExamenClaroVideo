@@ -14,6 +14,8 @@ namespace ExamenClaroVideo.Model
         Task<ObservableCollection<PeliculaDetalleType>> DameListaPelis();
         void PeliculaActualSet(PeliculaDetalleType peliculaActual);
         PeliculaDetalleType PeliculaActualGet();
+        Task<ObservableCollection<PeliculaDetalleType>> BuscarPelicula(string peliculaBuscar);
+        event EventHandler<bool> EventoCambioEstadoInternet;
 
     }
 }

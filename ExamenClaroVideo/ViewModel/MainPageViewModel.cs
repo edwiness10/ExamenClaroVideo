@@ -1,5 +1,6 @@
 ﻿using ExamenClaroVideo.DataTypes;
 using ExamenClaroVideo.Infrastructure;
+using ExamenClaroVideo.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace ExamenClaroVideo.ViewModel
@@ -18,12 +20,14 @@ namespace ExamenClaroVideo.ViewModel
     {
 
         #region "Variables Etc"
-        public ServiceNavigation Navigate { get; private set; }
+        public  ServiceNavigation Navigate { get; private set; }
+        private IBussinesLayer bussinesLayer;
         private ICommand _comandoAbrirMenu;
         private ICommand _pageLoadedCommand;
         private ICommand _comandoItemInvoked;
         private bool _isOpenMenu;        
         private object _frameAplicacion;
+        private string _textoEstadoInternet;        
         private ObservableCollection<SplitViewPaneMenuItem> _menuItems;
         private SplitViewPaneMenuItem _selectMenu;
         
@@ -135,7 +139,8 @@ namespace ExamenClaroVideo.ViewModel
             {
                 if (_querySubmittedCommand == null)
                 {
-                    _querySubmittedCommand = new RelayCommand<PeliculaDetalleType>(TextChanged);
+                   // _querySubmittedCommand = new RelayCommand<object>(QuerySubmittedChanged);
+                    _querySubmittedCommand = new RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs>(QuerySubmittedChanged);
                 }
                 return _querySubmittedCommand;
             }
@@ -151,6 +156,18 @@ namespace ExamenClaroVideo.ViewModel
                     RaisePropertyChanged(() => TextoBuscador);
                 }
 
+            }
+        }
+        public string TextoEstadoInternet
+        {
+            get { return _textoEstadoInternet; }
+            set
+            {
+                if (value != _textoEstadoInternet)
+                {
+                    _textoEstadoInternet = value;
+                    RaisePropertyChanged(() => TextoEstadoInternet);
+                }
             }
         }
         public ObservableCollection<PeliculaDetalleType> ListaResultado
@@ -169,9 +186,39 @@ namespace ExamenClaroVideo.ViewModel
         #endregion
 
         #region "Constructor Etc"
-        public MainPageViewModel(ServiceNavigation navigate)
+        public MainPageViewModel(ServiceNavigation navigate, IBussinesLayer bussinesLayer)
         {
             this.Navigate = navigate;
+            this.bussinesLayer = bussinesLayer;
+            EstadoConexion();
+
+
+        }
+        private void EstadoConexion()
+        {
+            bussinesLayer.EventoCambioEstadoInternet += BussinesLayer_EventoCambioEstadoInternet;
+            CambioEstado(bussinesLayer.HayInternet());
+
+        }
+
+        private void BussinesLayer_EventoCambioEstadoInternet(object sender, bool e)
+        {
+            CambioEstado(e);
+        }
+        private async void CambioEstado(bool estado)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                 () =>
+                 {
+                     if (estado)
+                     {
+                         TextoEstadoInternet = "Online";
+                     }
+                     else
+                     {
+                         TextoEstadoInternet = "Offline";
+                     }
+                 });            
         }
 
         #endregion
@@ -207,9 +254,21 @@ namespace ExamenClaroVideo.ViewModel
             
         }
 
-        private void TextChanged(object data)
+        private async void TextChanged(object data)
         {
-
+            ListaResultado= await bussinesLayer.BuscarPelicula(TextoBuscador);
+        }
+        private  void QuerySubmittedChanged(AutoSuggestBoxQuerySubmittedEventArgs data)
+        {
+            
+            if (data.ChosenSuggestion != null)
+            {
+                bussinesLayer.PeliculaActualSet((PeliculaDetalleType)data.ChosenSuggestion);
+                Navigate.Navigate(typeof(DetallePage));
+                TextoBuscador = "";
+                ListaResultado = null;
+            }           
+            //ListaResultado = await bussinesLayer.BuscarPelicula(TextoBuscador);
         }
         #endregion
 

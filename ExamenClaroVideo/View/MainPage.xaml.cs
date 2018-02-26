@@ -16,15 +16,5 @@ namespace ExamenClaroVideo
             var viewModel = DataContext as MainPageViewModel;
             viewModel.Navigate.SetNavigationFrame(Principal);
         }
-
-        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-
-        }
-
-        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-
-        }
     }
 }

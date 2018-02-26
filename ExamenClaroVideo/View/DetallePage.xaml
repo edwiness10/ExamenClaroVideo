@@ -100,7 +100,7 @@
                                         Stretch="Uniform"
                                         animations:Connected.Key="Imagen"
                                         Source="{Binding PeliculaActual.UrlImagen}" />
-                        <Grid Grid.Column="1" Margin="20 0 0 0 "  Grid.Row="0" >
+                           <Grid Grid.Column="1" Margin="20 0 0 0 "  Grid.Row="0" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
@@ -119,35 +119,9 @@
                                 </TextBlock>
                                 <!--<TextBlock TextWrapping="Wrap" Grid.Row="1" FontSize="20" Text="{Binding PeliculaActual.Director}"  FontWeight="Bold"/>-->
                                 <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
-                                <GridView x:Name="GridActor"
-                                    Grid.Row="3"                                          
-                                    Margin="0 10 0 0"
-                                    HorizontalAlignment="Left"
-                                    IsItemClickEnabled="False"
-                                    IsActiveView="False"
-                                    IsSwipeEnabled="False"                                      
-                                    CanDragItems="False"
-                                    ItemsSource="{Binding PeliculaActual.Actor}"
-                                    BorderBrush="Transparent"
-                                    Header="Actor:"
-                                    animations:ReorderGridAnimation.Duration="257"
-                                    SelectionMode="None">
-                                    <GridView.ItemTemplate >
-                                        <DataTemplate  x:DataType="x:String">
-                                            <Grid  Margin="5" >
-                                                <Border  Background="Black" Opacity="0.2" Height="40" Width="170"/>
-                                                <TextBlock FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind}"></TextBlock>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </GridView.ItemTemplate>
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                        <ItemsWrapGrid MaximumRowsOrColumns="10" ItemWidth="170" Orientation="Horizontal"/>
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
                                 <GridView  x:Name="GridGenero"
-                                    Grid.Row="4"
+                                    Grid.Row="3"
+                                    Margin="10"
                                     HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"
                                     IsActiveView="False"
@@ -173,7 +147,48 @@
                                     </GridView.ItemsPanel>
                                 </GridView>
                             </Grid>
+                        <Grid Grid.Column="0" Margin="20 0 0 0 "  Grid.Row="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <GridView 
+                                    Grid.Row="4"                                          
+                                    Margin="0 10 0 0"
+                                    HorizontalAlignment="Left"
+                                    IsItemClickEnabled="False"
+                                    IsActiveView="False"
+                                    IsSwipeEnabled="False"                                      
+                                    CanDragItems="False"
+                                    ItemsSource="{Binding PeliculaActual.Actor}"
+                                    BorderBrush="Transparent"
+                                    Header="Actor:"
+                                    animations:ReorderGridAnimation.Duration="257"
+                                    SelectionMode="None">
+                                <GridView.ItemTemplate >
+                                    <DataTemplate  x:DataType="x:String">
+                                        <Grid  Margin="5" >
+                                            <Border  Background="Black" Opacity="0.2" Height="40" Width="170"/>
+                                            <TextBlock FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind}"></TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid MaximumRowsOrColumns="10" ItemWidth="170" Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                            
                         </Grid>
+
+                    </Grid>
                     <Grid  x:Name="contextoGridMobile" Visibility="Visible" HorizontalAlignment="Center" Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" MinWidth="400" MaxWidth="550"/>
@@ -212,9 +227,9 @@
                             <!--<TextBlock TextWrapping="Wrap" Grid.Row="1" FontSize="20" Text="{Binding PeliculaActual.Director}"  FontWeight="Bold"/>-->
                             <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
                             <GridView 
-                                    Grid.Row="3"                                          
+                                    Grid.Row="4"                                          
                                     Margin="0 10 0 0"
-                                    HorizontalAlignment="Center"
+                                    HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"
                                     IsActiveView="False"
                                     IsSwipeEnabled="False"                                      
@@ -239,8 +254,9 @@
                                 </GridView.ItemsPanel>
                             </GridView>
                             <GridView 
-                                    Grid.Row="4"
-                                    HorizontalAlignment="Center"
+                                    Grid.Row="3"  
+                                    Margin="10"
+                                    HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"
                                     IsActiveView="False"
                                     IsSwipeEnabled="False"                                      
@@ -270,8 +286,8 @@
                 </Grid>         
            
         </ScrollViewer>
-        <Button Margin="10" VerticalAlignment="Top"  HorizontalAlignment="Left" Content=" regresar" Command="{Binding ComandoGoBack}" Foreground="White"></Button>
-
+        <Button Margin="10" VerticalAlignment="Top"  HorizontalAlignment="Left"   Command="{Binding ComandoGoBack}" Foreground="White">
+            <SymbolIcon  Symbol="Back"/>
+        </Button>
     </Grid>
-
 </Page>
