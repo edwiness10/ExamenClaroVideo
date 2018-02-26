@@ -1,0 +1,202 @@
+﻿<Page
+    x:Class="ExamenClaroVideo.DetallePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ExamenClaroVideo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:data="using:Microsoft.Graphics.Canvas.Brushes" 
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+     DataContext="{Binding Detalle, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+    <i:Interaction.Behaviors>
+        <c:EventTriggerBehavior EventName="Loaded">
+            <c:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+        </c:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!-- VisualState to be triggered when the
+                             window width is >=720 effective pixels. -->
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="DetallesPelicula.Grid.Column" Value="1"/>
+                        <Setter Target="DetallesPelicula.Grid.Row"  Value="0"/>
+                        <Setter Target="GridActor.HorizontalAlignment" Value="Left"/>
+                        <Setter Target="GridGenero.HorizontalAlignment" Value="Left"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+       
+
+        
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <AutoSuggestBox PlaceholderText="Buscar"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            QueryIcon="Find"
+                            Margin="10"/>
+            <Image Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>
+            <Button  Content=" regresar" Command="{Binding ComandoGoBack}" Foreground="White"></Button>
+        </Grid>
+        <Grid  Grid.Row="2">
+            <Image x:Name="ToolkitLogo" Source="{Binding PeliculaActual.UrlImagen}"  Stretch="UniformToFill" />
+            <Border Background="Black" Opacity="0.4" ></Border>
+            <i:Interaction.Behaviors>
+                <behaviors:Blur x:Name="BlurBehavior"
+                        Value="9"
+                        Duration="0"
+                        Delay="0"
+                        AutomaticallyStart="True"/>
+            </i:Interaction.Behaviors>
+        </Grid>
+        
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3"
+              VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled"
+              Height="auto" Width="auto">
+                
+            <Grid Grid.Row="2">
+             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="1" Orientation="Vertical" animations:Connected.AnchorElement="{x:Bind ImagenPrincipal}">
+                        <controls:DropShadowPanel BlurRadius="8"
+                                  ShadowOpacity="0.7"
+                                  OffsetX="2"
+                                  OffsetY="2"
+                                  Color="Black"
+                                              Margin="10"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding PeliculaActual.Titulo}" FontSize="{StaticResource GridViewHeaderItemMinHeight}" Foreground="#ECAF2A" FontWeight="Bold"/>
+                        </controls:DropShadowPanel>
+
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="550"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <controls:RoundImageEx x:Name="ImagenPrincipal"
+                                    IsCacheEnabled="True"
+                                    Width="550"  Height="300"
+                                    DecodePixelWidth="550" DecodePixelHeight="300"
+                                    HorizontalAlignment="Left"                                    
+                                    VerticalAlignment="Top"
+                                    PlaceholderStretch="None"
+                                    Stretch="Uniform"
+                                    animations:Connected.Key="Imagen"
+                                    PlaceholderSource="ms-appx:///Assets\clarovideo-logo-sitio-70-71.png"
+                                    Source="{Binding PeliculaActual.UrlImagen}" />
+                        <Grid x:Name="DetallesPelicula" Grid.Column="0" Margin="20 0 0 0 "  Grid.Row="1" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock TextWrapping="Wrap" Grid.Row="0" FontSize="20" Margin="0 10 0 0" FontWeight="Bold">                                
+                                 <Run Text="{Binding PeliculaActual.Titulo}"/>
+                                 <Run Text="  "/>
+                                 <Run Text="{Binding PeliculaActual.Duracion}"/>
+                                 <Run Text="  "/>
+                                 <Run Text="{Binding PeliculaActual.Clasificacion}"/>
+                                </TextBlock>
+                                <!--<TextBlock TextWrapping="Wrap" Grid.Row="1" FontSize="20" Text="{Binding PeliculaActual.Director}"  FontWeight="Bold"/>-->
+                                <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
+                                <GridView x:Name="GridActor"
+                                    Grid.Row="3"                                          
+                                    Margin="0 10 0 0"
+                                    HorizontalAlignment="Center"
+                                    IsItemClickEnabled="False"
+                                    IsActiveView="False"
+                                    IsSwipeEnabled="False"                                      
+                                    CanDragItems="False"
+                                    ItemsSource="{Binding PeliculaActual.Actor}"
+                                    BorderBrush="Transparent"
+                                    Header="Actor:"
+                                    animations:ReorderGridAnimation.Duration="257"
+                                    SelectionMode="None">
+                                    <GridView.ItemTemplate >
+                                        <DataTemplate  x:DataType="x:String">
+                                            <Grid  Margin="5" >
+                                                <Border  Background="Black" Opacity="0.2" Height="40" Width="170"/>
+                                                <TextBlock FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind}"></TextBlock>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridView.ItemTemplate>
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                        <ItemsWrapGrid MaximumRowsOrColumns="10" ItemWidth="170" Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
+                                <GridView  x:Name="GridGenero"
+                                    Grid.Row="4"
+                                    HorizontalAlignment="Center"
+                                    IsItemClickEnabled="False"
+                                    IsActiveView="False"
+                                    IsSwipeEnabled="False"                                      
+                                    CanDragItems="False"
+                                    ItemsSource="{Binding PeliculaActual.Genero}"
+                                    BorderBrush="Transparent"
+                                    Header="Genero:"
+                                    animations:ReorderGridAnimation.Duration="257"
+                                    SelectionMode="None">
+                                    <GridView.ItemTemplate >
+                                        <DataTemplate  x:DataType="x:String">
+                                            <Grid  Margin="5" >
+                                                <Border  Background="Black" Opacity="0.2" Height="40" Width="170"/>
+                                                <TextBlock FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind}"></TextBlock>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridView.ItemTemplate>
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                        <ItemsWrapGrid MaximumRowsOrColumns="10" ItemWidth="170" Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Grid>         
+           
+        </ScrollViewer>
+
+    </Grid>
+
+</Page>

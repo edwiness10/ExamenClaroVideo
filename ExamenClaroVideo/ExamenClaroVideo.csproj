@@ -95,25 +95,102 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="DataLayer\DataContext.cs" />
+    <Compile Include="DataLayer\Entities\Db_Categoria.cs" />
+    <Compile Include="DataLayer\Entities\Db_Peliculas.cs" />
+    <Compile Include="DataLayer\Entities\Db_RelacionCatPel.cs" />
+    <Compile Include="DataTypes\PeliculaDetalleType.cs" />
+    <Compile Include="DataTypes\SplitViewPaneMenuItem.cs" />
+    <Compile Include="Infrastructure\NavigationService.cs" />
+    <Compile Include="Migrations\20180226064634_MigracionClaroVideo.cs" />
+    <Compile Include="Migrations\20180226064634_MigracionClaroVideo.designer.cs">
+      <DependentUpon>20180226064634_MigracionClaroVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\DatosContextModelSnapshot.cs" />
+    <Compile Include="Model\BussinesLayer.cs" />
+    <Compile Include="Model\ConverterData.cs" />
+    <Compile Include="Model\ModelInterface\IBussinesLayer.cs" />
+    <Compile Include="DataLayer\DataInterface\IDataRepository.cs" />
+    <Compile Include="DataLayer\DataRepository.cs" />
+    <Compile Include="Services\ServicesInterface\IWebService.cs" />
+    <Compile Include="Services\WebService.cs" />
+    <Compile Include="ViewModel\CategoriaViewModel.cs" />
+    <Compile Include="ViewModel\DetallesViewModel.cs" />
+    <Compile Include="View\CategoriaPage.xaml.cs">
+      <DependentUpon>CategoriaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetallePage.xaml.cs">
+      <DependentUpon>DetallePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="ExamenClaroVideo_TemporaryKey.pfx" />
+    <PRIResource Include="Resources\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\clarovideo-logo-sitio-2480-1200.png" />
+    <Content Include="Assets\clarovideo-logo-sitio-400-400.png" />
+    <Content Include="Assets\clarovideo-logo-sitio-620-300.png" />
+    <Content Include="Assets\clarovideo-logo-sitio-70-71.png" />
+    <Content Include="Assets\clarovideo-logo-sitio-775-375.png" />
+    <Content Include="Assets\clarovideo-logo-sitio-930-450.png" />
+    <Content Include="Assets\clarovideo-logo-sitio1240-600.png" />
+    <Content Include="Assets\ELSORPRENDENTEHOMBREARAAWHORIZONTAL.jpg" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
@@ -121,16 +198,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\CategoriaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DetallePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <Version>1.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+      <Version>1.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLightLibs">
+      <Version>5.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.1</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

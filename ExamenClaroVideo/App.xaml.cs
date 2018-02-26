@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExamenClaroVideo.DataLayer;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +32,10 @@ namespace ExamenClaroVideo
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            using (var db = new DatosContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>
@@ -67,6 +73,7 @@ namespace ExamenClaroVideo
                     // configurando la nueva página pasándole la información requerida como
                     //parámetro de navegación
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                   
                 }
                 // Asegurarse de que la ventana actual está activa.
                 Window.Current.Activate();
