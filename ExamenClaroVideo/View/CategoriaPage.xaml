@@ -20,7 +20,7 @@
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
@@ -36,7 +36,7 @@
                             QueryIcon="Find"
                             Margin="10"/>
 
-            <Image  Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>
+            <Image Margin="10 0 0 0" HorizontalAlignment="Left" Height="100" Width="320" Stretch="Uniform"  Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>
         </Grid>
         <GridView Grid.Row="2"
                     x:Name="listView" 
