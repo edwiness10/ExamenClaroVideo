@@ -24,5 +24,10 @@ namespace ExamenClaroVideo.DataTypes
         public string TítuloOriginal { get; set; }
         public string UrlVideo { get; set; }
         public string VideoLocal { get; set; }
+
+        public override string ToString()
+        {
+            return this.Titulo;
+        }
     }
 }

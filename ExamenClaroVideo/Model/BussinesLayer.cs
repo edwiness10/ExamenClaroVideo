@@ -1,18 +1,13 @@
-﻿using ExamenClaroVideo.DataLayer;
+﻿using ExamenClaroVideo.Converters;
+using ExamenClaroVideo.DataLayer;
 using ExamenClaroVideo.DataLayer.Entities;
 using ExamenClaroVideo.DataTypes;
 using ExamenClaroVideo.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Windows.Networking.BackgroundTransfer;
 using Windows.Networking.Connectivity;
-using Windows.Storage;
 
 namespace ExamenClaroVideo.Model
 {
@@ -21,7 +16,6 @@ namespace ExamenClaroVideo.Model
         private IDataRepository dataRepository;
         private IWebService webService;
         private PeliculaDetalleType _peliculaActual;
-
         private bool _hayInternet;
         public event EventHandler<bool> EventoCambioEstadoInternet;
 
@@ -58,8 +52,6 @@ namespace ExamenClaroVideo.Model
 
         public async Task <ObservableCollection<PeliculaDetalleType>> DameListaPelis()
         {
-            ////Download("");
-            //StartDownload_Click();
             ObservableCollection<Db_Peliculas> datosRetorno= new ObservableCollection<Db_Peliculas>();
             if (HayInternet())
             {

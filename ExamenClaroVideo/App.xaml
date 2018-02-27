@@ -6,6 +6,11 @@
     RequestedTheme="Dark">
 
     <Application.Resources>
-        <local:ViewModelLocator x:Key="Locator"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/ResourseGlobal.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:ViewModelLocator x:Key="Locator"/>
+        </ResourceDictionary>        
     </Application.Resources>
 </Application>

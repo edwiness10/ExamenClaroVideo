@@ -96,6 +96,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanNegationConverter.cs" />
+    <Compile Include="Converters\ListToStringConverter.cs" />
+    <Compile Include="Converters\ListToVisibilityConverter.cs" />
+    <Compile Include="Converters\PeliculasTypeToVisibilityConverter.cs" />
     <Compile Include="DataLayer\DataContext.cs" />
     <Compile Include="DataLayer\Entities\Db_Categoria.cs" />
     <Compile Include="DataLayer\Entities\Db_Peliculas.cs" />
@@ -109,7 +113,7 @@
     </Compile>
     <Compile Include="Migrations\DatosContextModelSnapshot.cs" />
     <Compile Include="Model\BussinesLayer.cs" />
-    <Compile Include="Model\ConverterData.cs" />
+    <Compile Include="Converters\ConverterData.cs" />
     <Compile Include="Model\ModelInterface\IBussinesLayer.cs" />
     <Compile Include="DataLayer\DataInterface\IDataRepository.cs" />
     <Compile Include="DataLayer\DataRepository.cs" />
@@ -199,6 +203,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\ResourseGlobal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="View\CategoriaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

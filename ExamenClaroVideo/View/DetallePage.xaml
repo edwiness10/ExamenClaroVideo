@@ -120,6 +120,7 @@
                                 <!--<TextBlock TextWrapping="Wrap" Grid.Row="1" FontSize="20" Text="{Binding PeliculaActual.Director}"  FontWeight="Bold"/>-->
                                 <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
                                 <GridView  x:Name="GridGenero"
+                                    Visibility="{Binding PeliculaActual.Genero , Converter={StaticResource listToVisibilityConverter}}"
                                     Grid.Row="3"
                                     Margin="10"
                                     HorizontalAlignment="Left"
@@ -146,19 +147,8 @@
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>
-                            </Grid>
-                        <Grid Grid.Column="0" Margin="20 0 0 0 "  Grid.Row="1" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            
                             <GridView 
+                                    Visibility="{Binding PeliculaActual.Actor,Converter={StaticResource listToVisibilityConverter} }"
                                     Grid.Row="4"                                          
                                     Margin="0 10 0 0"
                                     HorizontalAlignment="Left"
@@ -185,7 +175,17 @@
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
-                            
+                        </Grid>
+                        <Grid Grid.Column="0" Margin="20 0 0 0 "  Grid.Row="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>     
                         </Grid>
 
                     </Grid>
@@ -225,7 +225,8 @@
                                  <Run Text="{Binding PeliculaActual.Clasificacion}"/>
                             </TextBlock>
                             <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
-                            <GridView Grid.Row="3"                                          
+                            <GridView Grid.Row="3"  
+                                    Visibility="{Binding PeliculaActual.Actor , Converter={StaticResource listToVisibilityConverter}}"
                                     Margin="0 10 0 0"
                                     HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"
@@ -251,7 +252,8 @@
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
-                            <GridView Grid.Row="4"  
+                            <GridView Grid.Row="4" 
+                                      Visibility="{Binding PeliculaActual.Genero , Converter={StaticResource listToVisibilityConverter}}"
                                     Margin="10"
                                     HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"

@@ -34,7 +34,9 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="1"  Background="Transparent" BorderBrush="White" BorderThickness="0 0 0 2 "></Border>
                 <TextBlock Text="Ciencia Ficción" Grid.Column="1" Margin="5" FontSize="25" Foreground="White" FontWeight="Bold" />
-            </Grid>            
+            </Grid>
+            <ProgressRing Grid.Row="2" Height="80" IsActive="True" Width="80" Visibility="{Binding ListaPeliculas ,Converter={StaticResource peliculasTypeToVisibilityConverter}}"></ProgressRing>
+            
             <GridView Grid.Row="2"
                         x:Name="listView" 
                         ItemsSource="{Binding ListaPeliculas}"

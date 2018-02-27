@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ExamenClaroVideo.Resources"
+    xmlns:converters="using:ExamenClaroVideo.Converters"    >
+    <converters:ListToVisibilityConverter x:Key="listToVisibilityConverter" />
+    <converters:BooleanNegationConverter x:Key="booleanNegationConverter" />
+    <converters:ListToStringConverter x:Key="listToStringConverter" />
+    <converters:PeliculasTypeToVisibilityConverter x:Key="peliculasTypeToVisibilityConverter" />   
+
+</ResourceDictionary>

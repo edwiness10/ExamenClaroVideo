@@ -8,7 +8,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <i:Interaction.Behaviors>
@@ -113,7 +112,7 @@
                         
                     </Grid>
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Visibility="{Binding MostrarFrame,Converter={StaticResource booleanNegationConverter}}">
                         <Border  Background="Black"/>
                         <TextBlock Text="Compruebe su conexión a Internet" VerticalAlignment="Center" FontSize="25" Foreground="White" HorizontalAlignment="Center"/>
                     </Grid>
