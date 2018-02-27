@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
-    xmlns:data="using:Microsoft.Graphics.Canvas.Brushes" 
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:c="using:Microsoft.Xaml.Interactions.Core"
      DataContext="{Binding Detalle, Source={StaticResource Locator}}"
@@ -253,7 +252,7 @@
                                 </GridView.ItemsPanel>
                             </GridView>
                             <GridView Grid.Row="4" 
-                                      Visibility="{Binding PeliculaActual.Genero , Converter={StaticResource listToVisibilityConverter}}"
+                                    Visibility="{Binding PeliculaActual.Genero , Converter={StaticResource listToVisibilityConverter}}"
                                     Margin="10"
                                     HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"

@@ -96,10 +96,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\BooleanNegationConverter.cs" />
-    <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\ListToVisibilityConverter.cs" />
-    <Compile Include="Converters\PeliculasTypeToVisibilityConverter.cs" />
+    <Compile Include="Converters\ConvertersXaml\BooleanNegationConverter.cs" />
+    <Compile Include="Converters\ConvertersXaml\ListToStringConverter.cs" />
+    <Compile Include="Converters\ConvertersXaml\ListToVisibilityConverter.cs" />
+    <Compile Include="Converters\ConvertersXaml\PeliculasTypeToVisibilityConverter.cs" />
     <Compile Include="DataLayer\DataContext.cs" />
     <Compile Include="DataLayer\Entities\Db_Categoria.cs" />
     <Compile Include="DataLayer\Entities\Db_Peliculas.cs" />

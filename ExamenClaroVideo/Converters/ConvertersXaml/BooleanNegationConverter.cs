@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace ExamenClaroVideo.Converters
 {
-    internal sealed class ListToVisibilityConverter : IValueConverter
+    internal class BooleanNegationConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -17,20 +12,20 @@ namespace ExamenClaroVideo.Converters
             {
                 if (value != null)
                 {
-                    var dato = (List<string>)value;
-                    if (dato.Count() > 0)
+                    if (value is bool)
                     {
-                        return Visibility.Visible;
-                    }
-
+                        Boolean b = (Boolean)value;
+                        return !b;
+                    }                    
                 }
-                return Visibility.Collapsed;
+                return false;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                return Visibility.Visible;
-            }            
+                return false;
+            }
+                     
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
