@@ -68,6 +68,7 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <AutoSuggestBox PlaceholderText="Buscar"
+                            Visibility="{Binding MostrarFrame}"
                             Grid.Column="2"
                             VerticalAlignment="Center"
                             QueryIcon="Find"              
