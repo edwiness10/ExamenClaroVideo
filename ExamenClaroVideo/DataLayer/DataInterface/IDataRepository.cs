@@ -12,5 +12,6 @@ namespace ExamenClaroVideo.DataLayer
     {
         void GuardarListaPeliculas(ObservableCollection<Db_Peliculas> observableCollection);
         ObservableCollection<Db_Peliculas> DameListaPeliculas();
+        bool HayDatosOffline();
     }
 }

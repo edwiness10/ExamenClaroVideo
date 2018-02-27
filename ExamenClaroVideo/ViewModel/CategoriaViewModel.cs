@@ -79,13 +79,16 @@ namespace ExamenClaroVideo.ViewModel
         }
         private async void CargarDatos()
         {
+           
             if (ListaPeliculas==null)
             {
                 ListaPeliculas = await bussinesLayer.DameListaPelis();
-                if (ListaPeliculas.Count()==0)
+                if (ListaPeliculas.Count() == 0)
                 {
                     ListaPeliculas = null;
                 }
+               
+               
             }
             
         }

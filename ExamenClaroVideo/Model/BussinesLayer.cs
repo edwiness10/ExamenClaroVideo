@@ -54,39 +54,7 @@ namespace ExamenClaroVideo.Model
         private void NetworkInformation_NetworkStatusChanged(object sender)
         {
             EventoCambioEstadoInternet?.Invoke(this, HayInternet());
-        }
-
-        private async void StartDownload_Click()
-        {
-            try
-            {
-                Uri source = new Uri("https://pruebasweb943415831.files.wordpress.com/2018/02/ghostrider2007whorizontal.jpg");              
-
-                string destination = "DatoTemporal.jpg";
-
-                StorageFolder destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Thumbnail",CreationCollisionOption.OpenIfExists);
-                //FolderRelativeId = "-1745770124\\30650028\\DatoTemporal.jpg"
-                StorageFile destinationFile = await destinationFolder.CreateFileAsync(
-                    destination, CreationCollisionOption.ReplaceExisting);
-
-                BackgroundDownloader downloader = new BackgroundDownloader();
-                DownloadOperation download = downloader.CreateDownload(source, destinationFile);
-                try
-                {
-                    await download.StartAsync().AsTask();
-                }
-                catch (TaskCanceledException)
-                {
-                    await download.ResultFile.DeleteAsync();
-                    download = null;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-        }
+        }        
 
         public async Task <ObservableCollection<PeliculaDetalleType>> DameListaPelis()
         {
@@ -139,5 +107,11 @@ namespace ExamenClaroVideo.Model
         {
             return _peliculaActual;
         }
+
+        public bool HayDatosOffline()
+        {
+            return dataRepository.HayDatosOffline();
+        }
     }
+    
 }

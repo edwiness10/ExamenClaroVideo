@@ -25,7 +25,8 @@ namespace ExamenClaroVideo.ViewModel
         private ICommand _comandoAbrirMenu;
         private ICommand _pageLoadedCommand;
         private ICommand _comandoItemInvoked;
-        private bool _isOpenMenu;        
+        private bool _isOpenMenu;
+        private bool _mostrarFrame;
         private object _frameAplicacion;
         private string _textoEstadoInternet;        
         private ObservableCollection<SplitViewPaneMenuItem> _menuItems;
@@ -36,7 +37,7 @@ namespace ExamenClaroVideo.ViewModel
 
         private string _textoBuscador;
         private ObservableCollection<PeliculaDetalleType> _listaResultado;
-
+        
 
         #endregion
         #region "Propiedades"
@@ -106,6 +107,19 @@ namespace ExamenClaroVideo.ViewModel
                 {
                     _isOpenMenu = value;
                     RaisePropertyChanged(() => IsOpenMenu);
+                }
+
+            }
+        }
+        public bool MostrarFrame
+        {
+            get { return _mostrarFrame; }
+            set
+            {
+                if (value != _mostrarFrame)
+                {
+                    _mostrarFrame = value;
+                    RaisePropertyChanged(() => MostrarFrame);
                 }
 
             }
@@ -191,14 +205,14 @@ namespace ExamenClaroVideo.ViewModel
             this.Navigate = navigate;
             this.bussinesLayer = bussinesLayer;
             EstadoConexion();
-
-
+            ComprobacionDatos();
         }
+        #endregion
+        #region "Procedimientos Internos"
         private void EstadoConexion()
         {
             bussinesLayer.EventoCambioEstadoInternet += BussinesLayer_EventoCambioEstadoInternet;
             CambioEstado(bussinesLayer.HayInternet());
-
         }
 
         private void BussinesLayer_EventoCambioEstadoInternet(object sender, bool e)
@@ -218,11 +232,29 @@ namespace ExamenClaroVideo.ViewModel
                      {
                          TextoEstadoInternet = "Offline";
                      }
-                 });            
+                     CambioDatosInternet();
+                 });
         }
-
-        #endregion
-        #region "Procedimientos Internos"
+        private void ComprobacionDatos()
+        {
+            if (!bussinesLayer.HayInternet())
+            {
+                MostrarFrame = bussinesLayer.HayDatosOffline();
+            }
+            else
+            {
+                MostrarFrame = true;
+            }
+           
+        }
+        private void CambioDatosInternet()
+        {
+            bool cambio = bussinesLayer.HayDatosOffline();
+            if (cambio==true && MostrarFrame==false)
+            {
+                MostrarFrame = true;
+            }
+        }
 
         private void AbrirMenu()
         {

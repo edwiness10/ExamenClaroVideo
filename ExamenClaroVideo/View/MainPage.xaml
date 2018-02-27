@@ -18,8 +18,6 @@
     </i:Interaction.Behaviors>
 
     <Page.Resources>
-
-
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI"/>
         </Style>
@@ -114,7 +112,12 @@
                         </StackPanel>
                         
                     </Grid>
-                    <Frame Grid.Row="1" x:Name="Principal">
+
+                    <Grid Grid.Row="1">
+                        <Border  Background="Black"/>
+                        <TextBlock Text="Compruebe su conexión a Internet" VerticalAlignment="Center" FontSize="25" Foreground="White" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <Frame Grid.Row="1" x:Name="Principal" Visibility="{Binding MostrarFrame}">
                         <Frame.ContentTransitions>
                             <TransitionCollection>
                                 <NavigationThemeTransition>
@@ -124,7 +127,7 @@
                                 </NavigationThemeTransition>
                             </TransitionCollection>
                         </Frame.ContentTransitions>
-                   </Frame>
+                   </Frame>                  
                 </Grid>
             </SplitView.Content>
         </SplitView>

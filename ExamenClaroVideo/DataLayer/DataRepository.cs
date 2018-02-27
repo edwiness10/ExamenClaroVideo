@@ -54,6 +54,25 @@ namespace ExamenClaroVideo.DataLayer
                 return new ObservableCollection<Db_Peliculas>();
             }
         }
+        public bool HayDatosOffline()
+        {
+            try
+            {
+                using (var db = new DatosContext())
+                {
+                    int numero =db.Peliculas.Count();
+                    if (numero>0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
 
     }

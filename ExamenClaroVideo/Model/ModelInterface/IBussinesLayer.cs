@@ -16,6 +16,7 @@ namespace ExamenClaroVideo.Model
         PeliculaDetalleType PeliculaActualGet();
         Task<ObservableCollection<PeliculaDetalleType>> BuscarPelicula(string peliculaBuscar);
         event EventHandler<bool> EventoCambioEstadoInternet;
+        bool HayDatosOffline();
 
     }
 }
