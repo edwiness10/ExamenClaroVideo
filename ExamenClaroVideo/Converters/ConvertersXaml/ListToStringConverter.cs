@@ -14,13 +14,15 @@ namespace ExamenClaroVideo.Converters
             {
                 if (value != null)
                 {
-                    var dato = (List<string>)value;
-                    if (dato.Count() > 0)
+                    if (value is List<string>)
                     {
-                        var data = String.Join(",", dato);
-                        return data;
+                        var dato = (List<string>)value;
+                        if (dato.Count() > 0)
+                        {
+                            var data = String.Join(",", dato);
+                            return data;
+                        }
                     }
-
                 }
                 return"";
             }

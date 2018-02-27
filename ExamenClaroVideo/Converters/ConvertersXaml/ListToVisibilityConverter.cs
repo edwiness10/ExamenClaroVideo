@@ -16,12 +16,14 @@ namespace ExamenClaroVideo.Converters
             {
                 if (value != null)
                 {
-                    var dato = (List<string>)value;
-                    if (dato.Count() > 0)
+                    if (value is List<string>)
                     {
-                        return Visibility.Visible;
-                    }
-
+                        var dato = (List<string>)value;
+                        if (dato.Count() > 0)
+                        {
+                            return Visibility.Visible;
+                        }
+                    } 
                 }
                 return Visibility.Collapsed;
             }

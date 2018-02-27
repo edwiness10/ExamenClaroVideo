@@ -14,15 +14,25 @@ namespace ExamenClaroVideo.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value!=null)
+            try
             {
-                var data = (ObservableCollection<PeliculaDetalleType>)value;
-                if (data.Count>0)
+                if (value != null)
                 {
-                    return Visibility.Collapsed;
+                    if (value is ObservableCollection<PeliculaDetalleType>)
+                    {
+                        var data = (ObservableCollection<PeliculaDetalleType>)value;
+                        if (data.Count > 0)
+                        {
+                            return Visibility.Collapsed;
+                        }
+                    }                   
                 }
+                return Visibility.Visible;
             }
-            return Visibility.Visible;
+            catch (Exception)
+            {
+                return Visibility.Visible;
+            }           
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
