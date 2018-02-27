@@ -24,8 +24,7 @@ namespace ExamenClaroVideo.Converters
             {
                 Debug.WriteLine(ex);
                 return false;
-            }
-                     
+            }                     
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
