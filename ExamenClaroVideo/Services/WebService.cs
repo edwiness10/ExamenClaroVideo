@@ -54,7 +54,7 @@ namespace ExamenClaroVideo.Services
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                return null;
+                return new ObservableCollection<Db_Peliculas>();
             }
         }
         public async Task<Db_Peliculas> ObtenerPelicula(int idPelicula)
