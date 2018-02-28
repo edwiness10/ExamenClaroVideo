@@ -232,7 +232,7 @@ namespace ExamenClaroVideo.ViewModel
                      {
                          TextoEstadoInternet = "Offline";
                      }
-                     CambioDatosInternet();
+                     CambioDatosInternet(estado);
                  });
         }
         private void ComprobacionDatos()
@@ -247,12 +247,19 @@ namespace ExamenClaroVideo.ViewModel
             }
            
         }
-        private void CambioDatosInternet()
+        private void CambioDatosInternet(bool internet)
         {
-            bool cambio = bussinesLayer.HayDatosOffline();
-            if (cambio==true && MostrarFrame==false)
+            bool local = bussinesLayer.HayDatosOffline();
+            if (local == true && MostrarFrame == false)
             {
                 MostrarFrame = true;
+            } else if (local == false && internet)
+            {
+                MostrarFrame = true;
+            }
+            else if (MenuItems!=null&& MenuItems.Count()>0 &&internet) 
+            {
+                Navigate.NavigateTo(MenuItems.FirstOrDefault().AssociatedPage, null);
             }
         }
 

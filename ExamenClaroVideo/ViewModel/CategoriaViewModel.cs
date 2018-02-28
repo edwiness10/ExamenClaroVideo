@@ -80,12 +80,12 @@ namespace ExamenClaroVideo.ViewModel
         private async void CargarDatos()
         {
            
-            if (ListaPeliculas==null)
+            if (ListaPeliculas==null || ListaPeliculas.Count==0)
             {
                 ListaPeliculas = await bussinesLayer.DameListaPelis();
                 if (ListaPeliculas.Count() == 0)
                 {
-                    ListaPeliculas = null;
+                    ListaPeliculas = ListaPeliculas;
                 }
                
                
