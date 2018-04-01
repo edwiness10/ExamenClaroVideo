@@ -106,6 +106,7 @@
     <Compile Include="DataLayer\Entities\Db_RelacionCatPel.cs" />
     <Compile Include="DataTypes\PeliculaDetalleType.cs" />
     <Compile Include="DataTypes\SplitViewPaneMenuItem.cs" />
+    <Compile Include="Infrastructure\Eventos.cs" />
     <Compile Include="Infrastructure\NavigationService.cs" />
     <Compile Include="Migrations\20180226064634_MigracionClaroVideo.cs" />
     <Compile Include="Migrations\20180226064634_MigracionClaroVideo.designer.cs">
@@ -119,6 +120,9 @@
     <Compile Include="DataLayer\DataRepository.cs" />
     <Compile Include="Services\ServicesInterface\IWebService.cs" />
     <Compile Include="Services\WebService.cs" />
+    <Compile Include="ViewModel\BlankPage1.xaml.cs">
+      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CategoriaViewModel.cs" />
     <Compile Include="ViewModel\DetallesViewModel.cs" />
     <Compile Include="View\CategoriaPage.xaml.cs">
@@ -206,6 +210,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="ViewModel\BlankPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CategoriaPage.xaml">
       <SubType>Designer</SubType>

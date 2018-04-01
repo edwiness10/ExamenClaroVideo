@@ -46,9 +46,6 @@
                         IsSwipeEnabled="False"
                         CanDragItems="False"
                         SelectedItem="{Binding ElementoMenu , Mode=TwoWay}"
-                        animations:Connected.ListItemElementName="ItemThumbnail"                    
-                        animations:Connected.ListItemKey="listItem"  
-                        animations:ReorderGridAnimation.Duration="257"
                         SelectionMode="Single">
                 <GridView.ItemTemplate >
                     <DataTemplate x:Name="ImageOverlayDataTemplate1" x:DataType="local:PeliculaDetalleType">
@@ -60,7 +57,6 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Top"
                                         Stretch="Fill"
-                                        animations:Connected.Key="Imagen"  
                                         Source="{x:Bind UrlImagen}"  />
                             <!--<Image Source="ms-appx:///Assets\clarovideo-logo-sitio-620-300.png"/>-->
                             <StackPanel Orientation="Vertical" Height="50" VerticalAlignment="Bottom" Background="{ThemeResource SystemBaseLowColor}" Padding="8">

@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 
 namespace ExamenClaroVideo.ViewModel
 {
-    class ViewModelLocator
+    public class ViewModelLocator
     {
         static ViewModelLocator()
         {
@@ -29,9 +29,9 @@ namespace ExamenClaroVideo.ViewModel
             ioc.Register<ServiceNavigation>();           
         }
        
-        public DetallesViewModel Detalle => ServiceLocator.Current.GetInstance<DetallesViewModel>();
-        public CategoriaViewModel Categoria => ServiceLocator.Current.GetInstance<CategoriaViewModel>();
-        public MainPageViewModel Main => ServiceLocator.Current.GetInstance<MainPageViewModel>();
+        public static DetallesViewModel Detalle => ServiceLocator.Current.GetInstance<DetallesViewModel>();
+        public static CategoriaViewModel Categoria => ServiceLocator.Current.GetInstance<CategoriaViewModel>();
+        public static MainPageViewModel Main => ServiceLocator.Current.GetInstance<MainPageViewModel>();
 
     }
 }

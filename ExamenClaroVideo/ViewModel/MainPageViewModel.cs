@@ -302,8 +302,9 @@ namespace ExamenClaroVideo.ViewModel
             
             if (data.ChosenSuggestion != null)
             {
-                bussinesLayer.PeliculaActualSet((PeliculaDetalleType)data.ChosenSuggestion);
-                Navigate.Navigate(typeof(DetallePage));
+                var peliculaDetalle = (PeliculaDetalleType)data.ChosenSuggestion;
+                bussinesLayer.PeliculaActualSet(peliculaDetalle);
+                Navigate.NavigateTo(typeof(DetallePage), peliculaDetalle);
                 TextoBuscador = "";
                 ListaResultado = null;
             }           

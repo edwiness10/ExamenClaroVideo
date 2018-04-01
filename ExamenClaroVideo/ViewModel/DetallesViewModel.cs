@@ -79,7 +79,10 @@ namespace ExamenClaroVideo.ViewModel
         }
         private void CargarDatos()
         {
-            PeliculaActual = bussinesLayer.PeliculaActualGet();
+            //if (PeliculaActual==null)
+            //{
+            //   PeliculaActual = bussinesLayer.PeliculaActualGet();
+            //}
         }
         #endregion
 

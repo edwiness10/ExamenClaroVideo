@@ -73,7 +73,7 @@ namespace ExamenClaroVideo.ViewModel
             if (_elementoMenu!=null)
             {
                 bussinesLayer.PeliculaActualSet(_elementoMenu);
-                _serviceNavigation.Navigate(typeof(DetallePage));
+                _serviceNavigation.NavigateTo(typeof(DetallePage), _elementoMenu);
                 ElementoMenu = null;
             }
         }

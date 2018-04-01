@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"    
     xmlns:c="using:Microsoft.Xaml.Interactions.Core"
      DataContext="{Binding Detalle, Source={StaticResource Locator}}"
     mc:Ignorable="d">
@@ -38,7 +38,7 @@
 
 
         <Grid  >
-            <Image x:Name="ToolkitLogo" Source="{Binding PeliculaActual.UrlImagen}"  Stretch="UniformToFill" />
+            <Image x:Name="ToolkitLogo" Source="{Binding PeliculaActual.UrlImagen,Mode=TwoWay}"  Stretch="UniformToFill" />
             <Border Background="Black" Opacity="0.4" ></Border>
             <i:Interaction.Behaviors>
                 <behaviors:Blur x:Name="BlurBehavior"
@@ -63,7 +63,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                <Grid Grid.Column="1"  animations:Connected.AnchorElement="{x:Bind ImagenPrincipal}">
+                <Grid Grid.Column="1" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="1*"/>
@@ -77,11 +77,11 @@
                                   Margin="10"
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding PeliculaActual.Titulo}" FontSize="{StaticResource GridViewHeaderItemMinHeight}" Foreground="#ECAF2A" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding PeliculaActual.Titulo ,Mode=TwoWay}" FontSize="{StaticResource GridViewHeaderItemMinHeight}" Foreground="#ECAF2A" FontWeight="Bold"/>
                     </controls:DropShadowPanel>
                     </Viewbox>
                     <Grid  x:Name="contextoGridDesktop" Visibility="Collapsed" HorizontalAlignment="Center"
-                           animations:Connected.AnchorElement="{x:Bind ImagenPrincipal}" Grid.Row="1">
+                          Grid.Row="1">
                             <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="550" MinWidth="400" MaxWidth="550"/>
                             <ColumnDefinition Width="10*"/>
@@ -97,8 +97,8 @@
                                         HorizontalAlignment="Stretch"                                    
                                         VerticalAlignment="Top"
                                         Stretch="Uniform"
-                                        animations:Connected.Key="Imagen"
-                                        Source="{Binding PeliculaActual.UrlImagen}" />
+                                        
+                                        Source="{Binding PeliculaActual.UrlImagen,Mode=TwoWay}" />
                            <Grid Grid.Column="1" Margin="20 0 0 0 " Grid.RowSpan="2"  Grid.Row="0" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
@@ -110,11 +110,11 @@
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock TextWrapping="Wrap" Grid.Row="0" FontSize="20" Margin="0 10 0 0" FontWeight="Bold">                                
-                                 <Run Text="{Binding PeliculaActual.Titulo}"/>
+                                 <Run Text="{Binding PeliculaActual.Titulo,Mode=TwoWay}"/>
                                  <Run Text="  "/>
-                                 <Run Text="{Binding PeliculaActual.Duracion}"/>
+                                 <Run Text="{Binding PeliculaActual.Duracion,Mode=TwoWay}"/>
                                  <Run Text="  "/>
-                                 <Run Text="{Binding PeliculaActual.Clasificacion}"/>
+                                 <Run Text="{Binding PeliculaActual.Clasificacion,Mode=TwoWay}"/>
                                 </TextBlock>
                                 <!--<TextBlock TextWrapping="Wrap" Grid.Row="1" FontSize="20" Text="{Binding PeliculaActual.Director}"  FontWeight="Bold"/>-->
                                 <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
@@ -130,7 +130,7 @@
                                     ItemsSource="{Binding PeliculaActual.Genero}"
                                     BorderBrush="Transparent"
                                     Header="Genero:"
-                                    animations:ReorderGridAnimation.Duration="257"
+                                    
                                     SelectionMode="None">
                                     <GridView.ItemTemplate >
                                         <DataTemplate  x:DataType="x:String">
@@ -147,7 +147,7 @@
                                     </GridView.ItemsPanel>
                                 </GridView>
                             <GridView 
-                                    Visibility="{Binding PeliculaActual.Actor,Converter={StaticResource listToVisibilityConverter} }"
+                                    Visibility="{Binding PeliculaActual.Actor,Converter={StaticResource listToVisibilityConverter},Mode=TwoWay }"
                                     Grid.Row="4"                                          
                                     Margin="0 10 0 0"
                                     HorizontalAlignment="Left"
@@ -155,10 +155,10 @@
                                     IsActiveView="False"
                                     IsSwipeEnabled="False"                                      
                                     CanDragItems="False"
-                                    ItemsSource="{Binding PeliculaActual.Actor}"
+                                    ItemsSource="{Binding PeliculaActual.Actor,Mode=TwoWay}"
                                     BorderBrush="Transparent"
                                     Header="Actor:"
-                                    animations:ReorderGridAnimation.Duration="257"
+                                   
                                     SelectionMode="None">
                                 <GridView.ItemTemplate >
                                     <DataTemplate  x:DataType="x:String">
@@ -204,8 +204,7 @@
                                         HorizontalAlignment="Center"                                    
                                         VerticalAlignment="Top"
                                         Stretch="Uniform"
-                                        animations:Connected.Key="Imagen"
-                                        Source="{Binding PeliculaActual.UrlImagen}" />
+                                        Source="{Binding PeliculaActual.UrlImagen,Mode=TwoWay}" />
                         <Grid Grid.Column="0" Margin="20 0 0 0 "  Grid.Row="1" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -217,11 +216,11 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <TextBlock TextWrapping="Wrap" Grid.Row="0" FontSize="20" Margin="0 10 0 0" FontWeight="Bold">                                
-                                 <Run Text="{Binding PeliculaActual.Titulo}"/>
+                                 <Run Text="{Binding PeliculaActual.Titulo,Mode=TwoWay}"/>
                                  <Run Text="  "/>
-                                 <Run Text="{Binding PeliculaActual.Duracion}"/>
+                                 <Run Text="{Binding PeliculaActual.Duracion,Mode=TwoWay}"/>
                                  <Run Text="  "/>
-                                 <Run Text="{Binding PeliculaActual.Clasificacion}"/>
+                                 <Run Text="{Binding PeliculaActual.Clasificacion,Mode=TwoWay}"/>
                             </TextBlock>
                             <TextBlock TextWrapping="Wrap" Margin="0 20 0 0" Grid.Row="2" FontSize="19" Text="{Binding PeliculaActual.Descripcion}" />
                             <GridView Grid.Row="3"  
@@ -235,7 +234,6 @@
                                     ItemsSource="{Binding PeliculaActual.Actor}"
                                     BorderBrush="Transparent"
                                     Header="Actor:"
-                                    animations:ReorderGridAnimation.Duration="257"
                                     SelectionMode="None">
                                 <GridView.ItemTemplate >
                                     <DataTemplate  x:DataType="x:String">
@@ -252,17 +250,16 @@
                                 </GridView.ItemsPanel>
                             </GridView>
                             <GridView Grid.Row="4" 
-                                    Visibility="{Binding PeliculaActual.Genero , Converter={StaticResource listToVisibilityConverter}}"
+                                    Visibility="{Binding PeliculaActual.Genero , Converter={StaticResource listToVisibilityConverter},Mode=TwoWay}"
                                     Margin="10"
                                     HorizontalAlignment="Left"
                                     IsItemClickEnabled="False"
                                     IsActiveView="False"
                                     IsSwipeEnabled="False"                                      
                                     CanDragItems="False"
-                                    ItemsSource="{Binding PeliculaActual.Genero}"
+                                    ItemsSource="{Binding PeliculaActual.Genero,Mode=TwoWay}"
                                     BorderBrush="Transparent"
                                     Header="Genero:"
-                                    animations:ReorderGridAnimation.Duration="257"
                                     SelectionMode="None">
                                 <GridView.ItemTemplate >
                                     <DataTemplate  x:DataType="x:String">

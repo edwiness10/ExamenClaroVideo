@@ -1,10 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using ExamenClaroVideo.ViewModel;
+using GalaSoft.MvvmLight;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -22,7 +24,7 @@ namespace ExamenClaroVideo.Infrastructure
             }
 
             if (NavigationFrame == null)
-            {
+            {                
                 NavigationFrame = frame;
                 Navigate(typeof(CategoriaPage));
             }
@@ -39,12 +41,13 @@ namespace ExamenClaroVideo.Infrastructure
             if (destinationPage != null)
             {
                 NavigationFrame.Navigate(destinationPage, parameter);
-                NavigationFrame.BackStack.Clear();
+               // NavigationFrame.BackStack.Clear();
             }           
         }
         public virtual void GoBack()
         {
             NavigationFrame.GoBack();
+            
         }
     }
 }
